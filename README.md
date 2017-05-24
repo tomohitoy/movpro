@@ -18,3 +18,7 @@ $ docker-compose up -d
 $ ssh tomohitoy@0.0.0.0 -p 2222 -i ~/.ssh/id_rsa
 ```
 
+### ffmpegでmovファイルをmp4へ
+```
+$ ffmpeg -i hogehoge.mov hogehoge.mp4
+```
