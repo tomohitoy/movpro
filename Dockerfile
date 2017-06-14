@@ -12,15 +12,10 @@ RUN chmod go+w,u+s /tmp
 RUN apt-get install openssh-server zsh build-essential -y
 RUN apt-get install wget unzip curl tree grep bison libssl-dev openssl zlib1g-dev -y
 
-# install R
-RUN echo "https://cran.ism.ac.jp/bin/linux/ubuntu trusty/"
-RUN gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
-RUN gpg -a --export E084DAB9 | sudo apt-key add -
-RUN apt-get update -y
-RUN apt-get install r-base -y
 
 
 #vim
+RUN apt-get update -y
 RUN apt-get install git mercurial gettext libncurses5-dev libperl-dev python-dev python3-dev lua5.2 liblua5.2-dev luajit libluajit-5.1 gfortran libopenblas-dev liblapack-dev -y
 RUN cd /tmp \
     && git clone https://github.com/vim/vim.git \
@@ -60,10 +55,7 @@ RUN git clone https://github.com/tomohitoy/dotfiles.git ~/dotfiles \
 
 # else
 USER root
-RUN apt-get -y install software-properties-common
-RUN add-apt-repository ppa:mc3man/trusty-media
-RUN apt-get update
-RUN apt-get -y install ffmpeg
+RUN apt-get -y install libav-tools libavcodec-extra-54
 USER tomohitoy
 
 # volumes
